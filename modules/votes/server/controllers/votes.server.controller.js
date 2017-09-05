@@ -21,16 +21,27 @@ exports.create = function(req, res) {
   var vote = new Vote(req.body);
   vote.user = req.user;
     
+  //Convert data from comma seperated string to array of ints    
+  var data = req.body.ballotData;
+  data = data.split(",");
+    
+  for(var i=0; i<data.length; i++) {
+      data[i] = parseInt(data[i]);
+  }         
+      
   vote.save(function(err) {      
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.jsonp(vote);
+      res.jsonp(vote);   
+    
+      console.log("data: " + data);    
+        
       console.log("response: " + contractInstance.getCompleteBallotResults.call([1,2,3]).toLocaleString());
         
-      contractInstance.submitBallot([1,3,3,1,2,2,2,1,0,3,2,1,3],{from: web3.eth.accounts[0], gas: 4700000})
+      contractInstance.submitBallot(data,{from: web3.eth.accounts[0], gas: 4700000})
     
       console.log("response: " + contractInstance.getCompleteBallotResults.call([1,2,3]).toLocaleString());
     }

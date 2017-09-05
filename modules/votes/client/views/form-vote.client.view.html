@@ -4,11 +4,11 @@
     <h1>{{vm.vote._id ? 'Edit Vote' : 'New Vote'}}</h1>
   </div>
   <div class="col-md-12">
-    <form name="vm.form.voteForm" class="form-horizontal" ng-submit="vm.save(vm.form.voteForm.$valid)" novalidate>
+    <form name="vm.form.voteForm" class="form-horizontal" ng-submit="vm.save(vm.form.voteForm.$valid, [1,3,3,1,2,2,2,1,0,3,2,1,3])" novalidate>
       <fieldset>
         <div class="form-group" show-errors>
-          <label class="control-label" for="name">Name</label>
-          <input name="name" type="text" ng-model="vm.vote.name" id="name" class="form-control" placeholder="Name" required>
+          <label class="control-label" for="name">BallotData</label>
+          <input name="ballotData" type="text" ng-model="vm.vote.ballotData" id="ballotData" class="form-control" placeholder="Ballot Data" required>
           <div ng-messages="vm.form.voteForm.name.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Vote name is required.</p>
           </div>

@@ -26,8 +26,7 @@
     }
 
     // Save Vote
-    function save(isValid) {
-//      submitBallot();
+    function save(isValid, ballotData) {        
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'vm.form.voteForm');
         return false;
@@ -37,7 +36,7 @@
       if (vm.vote._id) {
         vm.vote.$update(successCallback, errorCallback);
       } else {
-        vm.vote.$save(successCallback, errorCallback);
+        vm.vote.$save(successCallback, errorCallback, ballotData);
       }
 
       function successCallback(res) {
