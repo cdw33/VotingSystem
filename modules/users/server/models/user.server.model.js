@@ -100,6 +100,13 @@ var UserSchema = new Schema({
   },
   resetPasswordExpires: {
     type: Date
+  },
+  hasVoted: {
+      type: Boolean,
+      default: false
+  },
+  votedDate: {
+    type: Date    
   }
 });
 
