@@ -24,6 +24,7 @@ setTimeout(function() {
     contractInstance.addBallotItem(1,1,[1,2,3],[0,0,0],{from: web3.eth.accounts[0], gas: 4700000})
     contractInstance.addBallotItem(2,2,[1,2],[0,0],{from: web3.eth.accounts[0], gas: 4700000})
     contractInstance.addBallotItem(3,3,[1,2,3],[0,0,0],{from: web3.eth.accounts[0], gas: 4700000})
+    contractInstance.addBallotItem(4,2,[1,2],[0,0],{from: web3.eth.accounts[0], gas: 4700000})
     process.stdout.write("Success!\n\n")
     process.stdout.write("Ballot Contract Stored at: " + contractInstance.address + "\n");
 }, 1000);

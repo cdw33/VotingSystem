@@ -18,7 +18,7 @@
 
     //cmd 2 identifies this as requesting voting data
     vm.vote.cmd = 2;
-    vm.vote.data = "1,3,3,1,2,2,2,1,0,3,2,1,3";
+    vm.vote.data = "";
 
     function refresh(){
       console.log("refresh");
@@ -81,6 +81,14 @@
                 $scope.C2 = data[i];
                 i++;
                 $scope.C3 = data[i];
+                i++;
+                break;
+              case "4":
+                $scope.D1 = data[i];
+                i++;
+                $scope.D2 = data[i];
+                i++;
+                $scope.D3 = data[i];
                 i++;
                 break;
               default:

@@ -12,11 +12,7 @@ var path = require('path'),
 
   var web3 = new Web3(new Web3.providers.HttpProvider("http://192.168.1.73:8545"));
   var abiDefinition = JSON.parse('[{"constant":false,"inputs":[{"name":"ballotID","type":"uint8"},{"name":"ballotVote","type":"uint32[]"},{"name":"numElements","type":"uint8"}],"name":"castVote","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint8"}],"name":"ballotItems","outputs":[{"name":"itemID","type":"uint8"},{"name":"voteType","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"id","type":"uint8"},{"name":"vType","type":"uint8"},{"name":"vEntries","type":"uint8[]"},{"name":"vResults","type":"uint32[]"}],"name":"addBallotItem","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"itemIds","type":"uint8[]"}],"name":"getCompleteBallotResults","outputs":[{"name":"","type":"uint32[]"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"ballotID","type":"uint8"}],"name":"getResultsFor","outputs":[{"name":"","type":"uint32[]"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"ballotVote","type":"uint8[]"}],"name":"submitBallot","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"}]');
-  const contractInstance = web3.eth.contract(abiDefinition).at("0x8265902740c16d2416e784847993a6f808399893");
-
-function requestAllVoteData(){
-  return contractInstance.getCompleteBallotResults.call([1,2,3]).toLocaleString();
-}
+  const contractInstance = web3.eth.contract(abiDefinition).at("0xb267de97c84f8900a7ff7d9fea03932ab89a9c92");
 
 /**
  * Create a Vote
@@ -38,8 +34,6 @@ exports.create = function(req, res) {
         break;
     default:
    }
-
-   console.log(data);
 
   //Convert data from comma seperated string to array of ints
 
@@ -63,7 +57,7 @@ exports.create = function(req, res) {
           res.jsonp(vote);
           break;
       case 2: //request voting data from blockchain
-          res.jsonp(JSON.stringify(contractInstance.getCompleteBallotResults.call([1,2,3]).toLocaleString()));
+          res.jsonp(JSON.stringify(contractInstance.getCompleteBallotResults.call([1,2,3,4]).toLocaleString()));
           break;
       default:
         return res.status(400).send({
