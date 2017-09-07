@@ -52,6 +52,11 @@
           //Turn result data back into array for parsing
           var data = result.split(',');
 
+          //First 2 elements are garbage data from somewhere,
+          //hopefully this gets removed when I figure out where..
+          if(data[1] == 0){
+            data = data.slice(2,data.length);
+          }
 
           var i=0
           while(i<data.length){
@@ -97,7 +102,7 @@
 
           $scope.date = Date();
 
-          $scope.results = result;
+          // $scope.results = data;
       }
 
       function errorCallback(res) {

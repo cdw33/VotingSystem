@@ -1,19 +1,128 @@
 <section>
   <div class="page-header">
-    <h1>{{vm.vote._id ? 'Edit Vote' : 'New Vote'}}</h1>
+    <h1>{{vm.vote._id ? 'Voting Locked' : 'New Ballot'}}</h1>
   </div>
   <div class="col-md-12">
     <form name="vm.form.voteForm" class="form-horizontal" ng-submit="vm.save(vm.form.voteForm.$valid)" novalidate>
       <fieldset>
         <div class="form-group" show-errors>
-          <label class="control-label" for="name">BallotData</label>
-          <input name="ballotData" type="text" ng-model="vm.vote.ballotData" id="ballotData" class="form-control" placeholder="Ballot Data" required>
-          <div ng-messages="vm.form.voteForm.name.$error" role="alert">
+          <h3>FOR COMMANDER IN CREAM AND VICE ICE</h3>
+          <h4>(RANKED CHOICE VOTING (INSTANT RUNOFF))</h4>
+          <hr>
+          <table class="table table-sm" style="width:50%;">
+            <thead class="thead-inverse">
+              <tr>
+                <th>Rank</th>
+                <th>Candidate Name</th>
+                <th>Party Affiliation</th>
+              </tr>
+            <tr>
+              <td><input name="A1" id="A1" ng-model="vm.vote.A1" type="number" min="1" max="3"></td>
+              <td>Reese WithoutASpoon<br>Cherry Garcia</th>
+              <td>Democrat for C.I.C<br>Democrat for Vice Ice</th>
+            </tr>
+            <tr>
+              <td><input name="A2" id="A2" ng-model="vm.vote.A2" type="number" min="1" max="3"></td>
+              <td>Choco 'Chip' Dough<br>Carmela Coney</th>
+              <td>Republican for C.I.C<br>Republican for Vice Ice</th>
+            </tr>
+            <tr>
+              <td><input name="A3" id="A3" ng-model="vm.vote.A3" type="number" min="1" max="3"></td>
+              <td>Magic Browny<br>Phish Food</th>
+              <td>Independent for C.I.C<br>Independent for C.I.C</th>
+            </tr>
+          </table>
+
+          <br><br>
+
+          <h3>FOR CHIEF DAIRY QUEEN</h3>
+          <h4>UNEXPIRED TERM (VOTE IN ONE OVAL)</h4>
+          <h4>Shall Justice Mint C. Chip of the Supreme Court of the State of Ice Cream be retained in office for another term?</h4>
+          <hr>
+          <table class="table table-sm" style="width:25%;">
+            <thead class="thead-inverse">
+              <tr>
+                <th>Decision</th>
+                <th>Option</th>
+              </tr>
+            <tr>
+              <td><input type="radio" name="B" id="B1" ng-model="vm.vote.B1" value="1"></td>
+              <td>YES</td>
+            </tr>
+            <tr>
+              <td><input type="radio" name="B" id="B2" ng-model="vm.vote.B2" value="2"></td>
+              <td>NO</td>
+            </tr>
+          </table>
+
+          <br><br>
+
+          <h3>FOR STATE REP. DISTRICT M&amp;M</h3>
+          <h4>(VOTE FOR TWO)</h4>
+          <hr>
+          <table class="table table-sm" style="width:50%;">
+            <thead class="thead-inverse">
+              <tr>
+                <th>Rank</th>
+                <th>Candidate Name</th>
+                <th>Party Affiliation</th>
+              </tr>
+            <tr>
+              <td><input type="checkbox" name="C1" id="C1" ng-model="vm.vote.C1" value="1"> </td>
+              <td>P. Nut Butter</td>
+              <td>REPUBLICAN</td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" name="C2" id="C2" ng-model="vm.vote.C2" value="2"></td>
+              <td>Cream C. Kol</td>
+              <td>INDEPENDENT</td>
+            </tr>
+            <tr>
+              <td><input type="checkbox" name="C3" id="C3" ng-model="vm.vote.C3" value="3"></td>
+              <td>Marsh Mallow</td>
+              <td>DEMOCRAT</td>
+            </tr>
+          </table>
+
+          <br><br>
+
+          <h3>CONSTITUTIONAL INITIATIVE NO. 116</h3>
+          <h4>MAKE VANILLA (OVER CHOCOLATE) THE OFFICIAL BEST FLAVOR</h4>
+          <h4>This is a fiercely debated topic and CI - 116 would official enumerate in written legislative text in perpetuity which flavor has favor - namely vanilla is better, unequivocally, than chocolate.</h4>
+          <hr>
+          <table class="table table-sm" style="width:25%;">
+            <thead class="thead-inverse">
+              <tr>
+                <th>Decision</th>
+                <th>Option</th>
+              </tr>
+            <tr>
+              <td><input type="radio" name="D" id="D1" ng-model="vm.vote.D1" value="1"></td>
+              <td>YES</td>
+            </tr>
+            <tr>
+              <td><input type="radio" name="D" id="D2" ng-model="vm.vote.D2" value="2"></td>
+              <td>NO</td>
+            </tr>
+          </table>
+
+          <br><br>
+
+
+
+
+
+
+
+
+          <!-- <label class="control-label" for="name">BallotData</label>
+          <input name="ballotData" type="text" ng-model="vm.vote.ballotData" id="ballotData" class="form-control" placeholder="Ballot Data" required> -->
+          <!-- <div ng-messages="vm.form.voteForm.name.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Vote name is required.</p>
-          </div>
+          </div> -->
         </div>
         <div class="form-group">
-          <button type="submit" class="btn btn-default">{{vm.vote._id ? 'Update' : 'Create'}}</button>
+          <button type="submit" class="btn btn-default">{{vm.vote._id ? 'Update' : 'Submit Ballot'}}</button>
         </div>
         <div ng-show="vm.error" class="text-danger">
           <strong ng-bind="vm.error"></strong>

@@ -1,10 +1,8 @@
 <section>
-<!--    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>-->
   <div class="page-header">
-    <h1>{{vm.vote._id ? 'Edit Vote' : 'New Vote'}}</h1>
+    <h1>{{vm.vote._id ? 'Final Voting Results' : 'Current Voting Results'}}</h1>
+    <h4>Last Updated: {{date}}</h4>
   </div>
-
-  <h3>Current Voting Rusults as of {{date}}</h3>
 
   <div class="col-md-12">
     <form name="vm.form.voteForm" class="form-horizontal" ng-submit="" novalidate>
@@ -15,56 +13,104 @@
         </div>
       </fieldset>
      </form>
-{{results}}
+
       <h3>FOR COMMANDER IN CREAM AND VICE ICE</h3>
       <h4>(RANKED CHOICE VOTING (INSTANT RUNOFF))</h4>
-      <hr>
-      <table>
-        <tr>
-          <td>Reese WithoutASpoon - Democrat for C.I.C<br>Cherry Garcia - Democrat for Vice Ice</td>
-          <td><strong>{{A1}}</strong> votes</td>
-        </tr>
-        <tr>
-          <td>Choco 'Chip' Dough - Republican for C.I.C<br>Carmela Coney - Republican for Vice Ice</td>
-          <td><strong>{{A2}}</strong> votes</td>
-        </tr>
-        <tr>
-          <td>Magic Browny - Independent for C.I.C<br>Phish Food - Independent for C.I.C</td>
-          <td><strong>{{A3}}</strong> votes</td>
-        </tr>
-      </table>
-      <br><br>
+      <table class="table table-sm" style="width:75%;">
+       <thead class="thead-inverse">
+         <tr>
+           <th>Candidate Name</th>
+           <th>Party Affiliation</th>
+           <th>Vote Count</th>
+         </tr>
+       </thead>
+       <tbody>
+         <tr>
+           <td>Reese WithoutASpoon<br>Cherry Garcia</th>
+           <td>Democrat for C.I.C<br>Democrat for Vice Ice</th>
+           <td><strong>{{A1}}</strong></td>
+         </tr>
+         <tr>
+           <td>Choco 'Chip' Dough<br>Carmela Coney</th>
+           <td>Republican for C.I.C<br>Republican for Vice Ice</th>
+           <td><strong>{{A2}}</strong></td>
+         </tr>
+         <tr>
+           <td>Magic Browny<br>Phish Food</th>
+           <td>Independent for C.I.C<br>Independent for C.I.C</th>
+           <td><strong>{{A3}}</strong></td>
+         </tr>
+       </tbody>
+     </table>
+      <br><hr><br>
       <h3>FOR CHIEF DAIRY QUEEN</h3>
       <h4>UNEXPIRED TERM (VOTE IN ONE OVAL)</h4>
       <h4>Shall Justice Mint C. Chip of the Supreme Court of the State of Ice Cream be retained in office for another term?</h4>
-      <hr>
-      YES:&nbsp;&nbsp;<strong>{{B1}}</strong> votes
-      <br>
-      NO:&nbsp;&nbsp;&nbsp;&nbsp;<strong>{{B2}}</strong> votes
-      <br><br>
-      <h3>FOR STATE REP. DISTRICT M&amp;M</h3>
-      <hr>
-      <table>
+      <table class="table table-sm" style="width:40%;">
+        <thead class="thead-inverse">
+          <tr>
+            <th>Decision</th>
+            <th>Vote Count</th>
+          </tr>
         <tr>
-          <td>P. Nut Butter (REPUBLICAN)</td>
-          <td><strong>{{C1}}</strong> votes</td>
+          <td>YES</td>
+          <td><strong>{{B1}}</strong></td>
         </tr>
         <tr>
-          <td>Cream C. Kol (INDEPENDENT)</td>
-          <td><strong>{{C2}}</strong> votes</td>
-        </tr>
-        <tr>
-          <td>Marsh Mallow(DEMOCRAT)</td>
-          <td><strong>{{C3}}</strong> votes</td>
+          <td>NO</td>
+          <td><strong>{{B2}}</strong></td>
         </tr>
       </table>
+
+      <br><hr><br>
+
+      <h3>FOR STATE REP. DISTRICT M&amp;M</h3>
+      <table class="table table-sm" style="width:75%;">
+        <thead class="thead-inverse">
+          <tr>
+            <th>Candidate Name</th>
+            <th>Party Affiliation</th>
+            <th>Vote Count</th>
+          </tr>
+        <tr>
+          <td>P. Nut Butter</td>
+          <td>REPUBLICAN</td>
+          <td><strong>{{C1}}</strong></td>
+        </tr>
+        <tr>
+          <td>Cream C. Kol</td>
+          <td>INDEPENDENT</td>
+          <td><strong>{{C2}}</strong></td>
+        </tr>
+        <tr>
+          <td>Marsh Mallow</td>
+          <td>DEMOCRAT</td>
+          <td><strong>{{C3}}</strong></td>
+        </tr>
+      </table>
+
+      <br><hr><br>
+
       <h3>CONSTITUTIONAL INITIATIVE NO. 116</h3>
       <h4>MAKE VANILLA (OVER CHOCOLATE) THE OFFICIAL BEST FLAVOR</h4>
       <h4>This is a fiercely debated topic and CI - 116 would official enumerate in written legislative text in perpetuity which flavor has favor - namely vanilla is better, unequivocally, than chocolate.</h4>
-      <hr>
-      YES:&nbsp;&nbsp;<strong>{{D1}}</strong> votes
-      <br>
-      NO:&nbsp;&nbsp;&nbsp;&nbsp;<strong>{{D2}}</strong> votes
-      <br><br>
+      <table class="table table-sm" style="width:40%;">
+        <thead class="thead-inverse">
+          <tr>
+            <th>Decision</th>
+            <th>Vote Count</th>
+          </tr>
+        <tr>
+          <td>YES</td>
+          <td><strong>{{D1}}</strong></td>
+        </tr>
+        <tr>
+          <td>NO</td>
+          <td><strong>{{D2}}</strong></td>
+        </tr>
+      </table>
+
+      <br><hr><br>
+      
   </div>
 </section>

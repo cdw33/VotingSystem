@@ -37,9 +37,10 @@ contract Ballot {
         uint weight;
 
         for(j = 0; j < numElements; j++) {
-            weight = numElements - j;
 
-            ballotItems[ballotID].results[ballotVote[j]-1]+=uint32(weight);
+            weight = numElements-(ballotVote[j]-1);
+
+            ballotItems[ballotID].results[j]+=uint32(weight);
         }
     }
     else if(ballotItems[ballotID].voteType == 2) { //Simple Majority

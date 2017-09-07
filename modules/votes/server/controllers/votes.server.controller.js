@@ -12,7 +12,7 @@ var path = require('path'),
 
   var web3 = new Web3(new Web3.providers.HttpProvider("http://192.168.1.73:8545"));
   var abiDefinition = JSON.parse('[{"constant":false,"inputs":[{"name":"ballotID","type":"uint8"},{"name":"ballotVote","type":"uint32[]"},{"name":"numElements","type":"uint8"}],"name":"castVote","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint8"}],"name":"ballotItems","outputs":[{"name":"itemID","type":"uint8"},{"name":"voteType","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"id","type":"uint8"},{"name":"vType","type":"uint8"},{"name":"vEntries","type":"uint8[]"},{"name":"vResults","type":"uint32[]"}],"name":"addBallotItem","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"itemIds","type":"uint8[]"}],"name":"getCompleteBallotResults","outputs":[{"name":"","type":"uint32[]"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"ballotID","type":"uint8"}],"name":"getResultsFor","outputs":[{"name":"","type":"uint32[]"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"ballotVote","type":"uint8[]"}],"name":"submitBallot","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"}]');
-  const contractInstance = web3.eth.contract(abiDefinition).at("0xb267de97c84f8900a7ff7d9fea03932ab89a9c92");
+  const contractInstance = web3.eth.contract(abiDefinition).at("0x81344e380b1e4e7475fbd7da67e59e1ae926b6cb");
 
 /**
  * Create a Vote
@@ -26,8 +26,9 @@ exports.create = function(req, res) {
 
   var data;
   switch(cmd) {
-    case 1: //get ballot data
-        data = req.body.ballotData;
+    case 1: //get ballot data from form
+        data = [1, 3, req.body.A1, req.body.A2, req.body.A3, 2, 2, req.body.B1 == 1 ? 1:0, req.body.B2 == 2 ? 1:0, 3, 3, req.body.C1 == true ? 1:0, req.body.C2 == true ? 1:0, req.body.C3 == true ? 1:0, 4, 2, req.body.D1 == 1 ? 1:0, req.body.D2 == 2 ? 1:0];
+        console.log("create data: "+data);
         break;
     case 2: //get voting request data
         data = req.body.data;
@@ -37,11 +38,11 @@ exports.create = function(req, res) {
 
   //Convert data from comma seperated string to array of ints
 
-  data = data.split(",");
+  //data = data.split(",");
 
-  for(var i=0; i<data.length; i++) {
-      data[i] = parseInt(data[i]);
-  }
+  // for(var i=0; i<data.length; i++) {
+  //     data[i] = parseInt(data[i]);
+  // }
 
   vote.save(function(err) {
     if (err) {
@@ -57,6 +58,7 @@ exports.create = function(req, res) {
           res.jsonp(vote);
           break;
       case 2: //request voting data from blockchain
+      console.log("response,2: "+contractInstance.getCompleteBallotResults.call([1,2,3,4]).toLocaleString());
           res.jsonp(JSON.stringify(contractInstance.getCompleteBallotResults.call([1,2,3,4]).toLocaleString()));
           break;
       default:
@@ -101,38 +103,6 @@ exports.update = function(req, res) {
   });
 };
 
-exports.request = function(req, res) {
-  var vote = req.vote;
-
-  vote = _.extend(vote, req.body);
-
-  vote.save(function(err) {
-    if (err) {
-      return res.status(400).send({
-        message: errorHandler.getErrorMessage(err)
-      });
-    } else {
-      res.jsonp(vote);
-    }
-  });
-};
-
-exports.results = function(req, res) {
-  var vote = req.vote;
-
-  vote = _.extend(vote, req.body);
-
-  vote.save(function(err) {
-    if (err) {
-      return res.status(400).send({
-        message: errorHandler.getErrorMessage(err)
-      });
-    } else {
-      res.jsonp(vote);
-    }
-  });
-};
-
 /**
  * Delete an Vote
  */
@@ -147,12 +117,6 @@ exports.delete = function(req, res) {
     } else {
       res.jsonp(vote);
     }
-  });
-};
-
-exports.ballots = function(req, res) {
-  vote.response(function(err) {
-    return contractInstance.getCompleteBallotResults.call([1,2,3]).toLocaleString();
   });
 };
 
