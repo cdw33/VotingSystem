@@ -19,7 +19,11 @@
         templateUrl: 'modules/votes/views/list-votes.client.view.html',
         controller: 'VotesListController',
         controllerAs: 'vm',
+        resolve: {
+          voteResolve: newVote
+        },
         data: {
+          roles: ['user', 'admin'],
           pageTitle: 'Votes List'
         }
       })

@@ -18,6 +18,9 @@
     vm.remove = remove;
     vm.save = save;
 
+    //cmd 1 identifies this as submitting vote data
+    vm.vote.cmd = 1;
+
     // Remove existing Vote
     function remove() {
       if ($window.confirm('Are you sure you want to delete?')) {
@@ -26,7 +29,7 @@
     }
 
     // Save Vote
-    function save(isValid, ballotData) {        
+    function save(isValid) {
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'vm.form.voteForm');
         return false;
@@ -36,7 +39,7 @@
       if (vm.vote._id) {
         vm.vote.$update(successCallback, errorCallback);
       } else {
-        vm.vote.$save(successCallback, errorCallback, ballotData);
+        vm.vote.$save(successCallback, errorCallback);
       }
 
       function successCallback(res) {

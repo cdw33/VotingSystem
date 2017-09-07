@@ -1,22 +1,62 @@
 <section>
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>-->
   <div class="page-header">
-    <h1>Votes</h1>
+    <h1>{{vm.vote._id ? 'Edit Vote' : 'New Vote'}}</h1>
   </div>
-  <div class="list-group">
-    <a ng-repeat="vote in vm.votes"
-       ui-sref="votes.view({ voteId: vote._id })"
-       class="list-group-item">
-      <small class="list-group-item-text">
-        Posted on
-        <span ng-bind="vote.created | date:'mediumDate'"></span>
-        by
-        <span ng-if="vote.user" ng-bind="vote.user.displayName"></span>
-        <span ng-if="!vote.user">Deleted User</span>
-      </small>
-      <h4 class="list-group-item-heading" ng-bind="vote.name"></h4>
-    </a>
-  </div>
-  <div class="alert alert-warning text-center" ng-if="vm.votes.$resolved && !vm.votes.length">
-    No Votes yet, why don't you <a ui-sref="votes.create">create one</a>?
+
+  <h3>Current Voting Rusults as of {{date}}</h3>
+
+  <div class="col-md-12">
+    <form name="vm.form.voteForm" class="form-horizontal" ng-submit="" novalidate>
+      <fieldset>
+        <div class="form-group" show-errors>
+          <input name="cmd" type="hidden" ng-model="vm.vote.cmd" id="cmd" class="form-control" required>
+          <input name="ballotData" type="hidden" ng-model="vm.vote.data" id="ballotData" class="form-control" placeholder="Ballot Data" required>
+        </div>
+      </fieldset>
+     </form>
+{{results}}
+      <h3>FOR COMMANDER IN CREAM AND VICE ICE</h3>
+      <h4>(RANKED CHOICE VOTING (INSTANT RUNOFF))</h4>
+      <hr>
+      <table>
+        <tr>
+          <td>Reese WithoutASpoon - Democrat for C.I.C<br>Cherry Garcia - Democrat for Vice Ice</td>
+          <td><strong>{{A1}}</strong> votes</td>
+        </tr>
+        <tr>
+          <td>Choco 'Chip' Dough - Republican for C.I.C<br>Carmela Coney - Republican for Vice Ice</td>
+          <td><strong>{{A2}}</strong> votes</td>
+        </tr>
+        <tr>
+          <td>Magic Browny - Independent for C.I.C<br>Phish Food - Independent for C.I.C</td>
+          <td><strong>{{A3}}</strong> votes</td>
+        </tr>
+      </table>
+      <br><br>
+      <h3>FOR CHIEF DAIRY QUEEN</h3>
+      <h4>UNEXPIRED TERM (VOTE IN ONE OVAL)</h4>
+      <h4>Shall Justice Mint C. Chip of the Supreme Court of the State of Ice Cream be retained in office for another term?</h4>
+      <hr>
+      YES:&nbsp;&nbsp;<strong>{{B1}}</strong> votes
+      <br>
+      NO:&nbsp;&nbsp;&nbsp;&nbsp;<strong>{{B2}}</strong> votes
+      <br><br>
+      <h3>FOR STATE REP. DISTRICT M&amp;M</h3>
+      <hr>
+      <table>
+        <tr>
+          <td>P. Nut Butter (REPUBLICAN)</td>
+          <td><strong>{{C1}}</strong> votes</td>
+        </tr>
+        <tr>
+          <td>Cream C. Kol (INDEPENDENT)</td>
+          <td><strong>{{C2}}</strong> votes</td>
+        </tr>
+        <tr>
+          <td>Marsh Mallow(DEMOCRAT)</td>
+          <td><strong>{{C3}}</strong> votes</td>
+        </tr>
+      </table>
   </div>
 </section>
