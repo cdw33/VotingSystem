@@ -28,21 +28,12 @@ exports.create = function(req, res) {
   switch(cmd) {
     case 1: //get ballot data from form
         data = [1, 3, req.body.A1, req.body.A2, req.body.A3, 2, 2, req.body.B1 == 1 ? 1:0, req.body.B2 == 2 ? 1:0, 3, 3, req.body.C1 == true ? 1:0, req.body.C2 == true ? 1:0, req.body.C3 == true ? 1:0, 4, 2, req.body.D1 == 1 ? 1:0, req.body.D2 == 2 ? 1:0];
-        console.log("create data: "+data);
         break;
     case 2: //get voting request data
         data = req.body.data;
         break;
     default:
    }
-
-  //Convert data from comma seperated string to array of ints
-
-  //data = data.split(",");
-
-  // for(var i=0; i<data.length; i++) {
-  //     data[i] = parseInt(data[i]);
-  // }
 
   vote.save(function(err) {
     if (err) {
@@ -58,7 +49,6 @@ exports.create = function(req, res) {
           res.jsonp(vote);
           break;
       case 2: //request voting data from blockchain
-      console.log("response,2: "+contractInstance.getCompleteBallotResults.call([1,2,3,4]).toLocaleString());
           res.jsonp(JSON.stringify(contractInstance.getCompleteBallotResults.call([1,2,3,4]).toLocaleString()));
           break;
       default:

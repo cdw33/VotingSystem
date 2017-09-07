@@ -1,7 +1,16 @@
 <section>
   <div class="page-header">
     <h1>{{vm.vote._id ? 'Final Voting Results' : 'Current Voting Results'}}</h1>
-    <h4>Last Updated: {{date}}</h4>
+
+
+    <table class="table table-sm" style="width:100%;">
+     <tbody>
+       <tr>
+         <td><h4>Last Updated: {{date}}</h4></th>
+         <td align="right"><input type="button" value="Refresh" onClick="window.location.reload()"></th>
+       </tr>
+     </tbody>
+   </table>
   </div>
 
   <div class="col-md-12">
@@ -42,7 +51,9 @@
          </tr>
        </tbody>
      </table>
+
       <br><hr><br>
+
       <h3>FOR CHIEF DAIRY QUEEN</h3>
       <h4>UNEXPIRED TERM (VOTE IN ONE OVAL)</h4>
       <h4>Shall Justice Mint C. Chip of the Supreme Court of the State of Ice Cream be retained in office for another term?</h4>
@@ -111,6 +122,6 @@
       </table>
 
       <br><hr><br>
-      
+
   </div>
 </section>

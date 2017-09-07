@@ -13,28 +13,15 @@
       title: 'Vote Now!',
       state: 'votes.vote',
       roles: ['user'],
-      isPublic: false
-    });  
-      
+      isPublic: true
+    });
+
     menuService.addMenuItem('topbar', {
       title: 'Live Results',
       state: 'votes.results',
-      roles: ['*'],
+      roles: ['user'],
       class: "live",
-      isPublic: true    
-    });   
-
-   /* // Add the dropdown list item
-    menuService.addSubMenuItem('topbar', 'votes', {
-      title: 'List Votes',
-      state: 'votes.list'
+      isPublic: true
     });
-
-    // Add the dropdown create item
-    menuService.addSubMenuItem('topbar', 'votes', {
-      title: 'Create Vote',
-      state: 'votes.create',
-      roles: ['user']
-    });*/
   }
 }());

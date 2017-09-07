@@ -5,6 +5,7 @@
   <div class="col-md-12">
     <form name="vm.form.voteForm" class="form-horizontal" ng-submit="vm.save(vm.form.voteForm.$valid)" novalidate>
       <fieldset>
+
         <div class="form-group" show-errors>
           <h3>FOR COMMANDER IN CREAM AND VICE ICE</h3>
           <h4>(RANKED CHOICE VOTING (INSTANT RUNOFF))</h4>
@@ -107,19 +108,7 @@
           </table>
 
           <br><br>
-
-
-
-
-
-
-
-
-          <!-- <label class="control-label" for="name">BallotData</label>
-          <input name="ballotData" type="text" ng-model="vm.vote.ballotData" id="ballotData" class="form-control" placeholder="Ballot Data" required> -->
-          <!-- <div ng-messages="vm.form.voteForm.name.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Vote name is required.</p>
-          </div> -->
+          
         </div>
         <div class="form-group">
           <button type="submit" class="btn btn-default">{{vm.vote._id ? 'Update' : 'Submit Ballot'}}</button>

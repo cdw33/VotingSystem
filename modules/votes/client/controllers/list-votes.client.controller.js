@@ -87,7 +87,7 @@
                 i++;
                 $scope.C3 = data[i];
                 i++;
-                break;
+                break; 
               case "4":
                 $scope.D1 = data[i];
                 i++;
@@ -101,8 +101,6 @@
           }
 
           $scope.date = Date();
-
-          // $scope.results = data;
       }
 
       function errorCallback(res) {
