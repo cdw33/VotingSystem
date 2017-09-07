@@ -106,7 +106,7 @@ var UserSchema = new Schema({
       default: false
   },
   votedDate: {
-    type: Date    
+    type: Date
   }
 });
 
@@ -114,7 +114,7 @@ var UserSchema = new Schema({
  * Hook a pre save method to hash the password
  */
 UserSchema.pre('save', function (next) {
-  if (this.password && this.isModified('password') && this.password.length > 6) {
+  if (this.password && this.isModified('password')) {
     this.salt = crypto.randomBytes(16).toString('base64');
     this.password = this.hashPassword(this.password);
   }
