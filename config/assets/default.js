@@ -5,7 +5,8 @@ module.exports = {
     lib: {
       css: [
         'public/lib/bootstrap/dist/css/bootstrap.css',
-        'public/lib/bootstrap/dist/css/bootstrap-theme.css'
+        'public/lib/bootstrap/dist/css/bootstrap-theme.css',
+        'public/lib/chartist/dist/chartist.min.css'
       ],
       js: [
         'public/lib/angular/angular.js',
@@ -32,7 +33,8 @@ module.exports = {
       'modules/core/client/app/config.js',
       'modules/core/client/app/init.js',
       'modules/*/client/*.js',
-      'modules/*/client/**/*.js'
+      'modules/*/client/**/*.js',
+      'public/lib/chartist/dist/chartist.min.js'
     ],
     views: ['modules/*/client/views/**/*.html']
   },

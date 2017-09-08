@@ -1,7 +1,68 @@
+<head>
+<style>
+
+.wrap{
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 1em;
+}
+
+.wrap:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#primary{
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+#secondary{
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 1em;
+}
+
+.ct-series-a .ct-slice-pie {
+  fill: #a4b6dd;
+}
+.ct-series-b .ct-slice-pie {
+  fill: #d09292;
+}
+.ct-series-c .ct-slice-pie {
+  fill: #c094cc;
+}
+
+.ct-label {
+  fill: rgba(0, 0, 0, 0.4);
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 1; }
+
+.no-padding {
+  padding:0;
+}
+
+
+  @media screen and (min-width : 900px) {
+      #primary{
+          float: left;
+          width: 65%;
+          padding-right: 1em;
+      }
+
+      #secondary{
+          float: right;
+          width: 35%;
+      }
+  }
+</style>
+</head>
 <section>
   <div class="page-header">
     <h1>{{vm.vote._id ? 'Final Voting Results' : 'Current Voting Results'}}</h1>
-
 
     <table class="table table-sm" style="width:100%;">
      <tbody>
@@ -23,103 +84,155 @@
       </fieldset>
      </form>
 
-      <h3>FOR COMMANDER IN CREAM AND VICE ICE</h3>
-      <h4>(RANKED CHOICE VOTING (INSTANT RUNOFF))</h4>
-      <table class="table table-sm" style="width:75%;">
-       <thead class="thead-inverse">
-         <tr>
-           <th>Candidate Name</th>
-           <th>Party Affiliation</th>
-           <th>Vote Count</th>
-         </tr>
-       </thead>
-       <tbody>
-         <tr>
-           <td>Reese WithoutASpoon<br>Cherry Garcia</th>
-           <td>Democrat for C.I.C<br>Democrat for Vice Ice</th>
-           <td><strong>{{A1}}</strong></td>
-         </tr>
-         <tr>
-           <td>Choco 'Chip' Dough<br>Carmela Coney</th>
-           <td>Republican for C.I.C<br>Republican for Vice Ice</th>
-           <td><strong>{{A2}}</strong></td>
-         </tr>
-         <tr>
-           <td>Magic Browny<br>Phish Food</th>
-           <td>Independent for C.I.C<br>Independent for C.I.C</th>
-           <td><strong>{{A3}}</strong></td>
-         </tr>
-       </tbody>
-     </table>
+     <div id="page">
+         <div id="main">
+             <div class="wrap">
+                 <div id="primary">
+                     <div id="content" role="main">
+                       <h3>FOR COMMANDER IN CREAM AND VICE ICE</h3>
+                       <h4>(RANKED CHOICE VOTING (INSTANT RUNOFF))</h4>
+                       <table class="table table-sm" style="width:100%;">
+                        <thead class="thead-inverse">
+                          <tr>
+                            <th>Candidate Name</th>
+                            <th>Party Affiliation</th>
+                            <th>Vote Count</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Reese WithoutASpoon<br>Cherry Garcia</th>
+                            <td>Democrat for C.I.C<br>Democrat for Vice Ice</th>
+                            <td><strong>{{A1}}</strong></td>
+                          </tr>
+                          <tr>
+                            <td>Choco 'Chip' Dough<br>Carmela Coney</th>
+                            <td>Republican for C.I.C<br>Republican for Vice Ice</th>
+                            <td><strong>{{A2}}</strong></td>
+                          </tr>
+                          <tr>
+                            <td>Magic Browny<br>Phish Food</th>
+                            <td>Independent for C.I.C<br>Independent for C.I.C</th>
+                            <td><strong>{{A3}}</strong></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                     </div>
+                 </div>
+                 <div id="secondary">
+                     <div id="pie-chart-1" class="ct-chart ct-square"></div>
+                 </div>
+             </div>
+         </div>
+     </div>
 
       <br><hr><br>
 
-      <h3>FOR CHIEF DAIRY QUEEN</h3>
-      <h4>UNEXPIRED TERM (VOTE IN ONE OVAL)</h4>
-      <h4>Shall Justice Mint C. Chip of the Supreme Court of the State of Ice Cream be retained in office for another term?</h4>
-      <table class="table table-sm" style="width:40%;">
-        <thead class="thead-inverse">
-          <tr>
-            <th>Decision</th>
-            <th>Vote Count</th>
-          </tr>
-        <tr>
-          <td>YES</td>
-          <td><strong>{{B1}}</strong></td>
-        </tr>
-        <tr>
-          <td>NO</td>
-          <td><strong>{{B2}}</strong></td>
-        </tr>
-      </table>
+      <div id="page">
+          <div id="main">
+              <div class="wrap">
+                  <div id="primary">
+                      <div id="content" role="main">
+                        <h3>FOR CHIEF DAIRY QUEEN</h3>
+                        <h4>UNEXPIRED TERM (VOTE IN ONE OVAL)</h4>
+                        <h4>Shall Justice Mint C. Chip of the Supreme Court of the State of Ice Cream be retained in office for another term?</h4>
+                        <table class="table table-sm" style="width:40%;">
+                          <thead class="thead-inverse">
+                            <tr>
+                              <th>Decision</th>
+                              <th>Vote Count</th>
+                            </tr>
+                          <tr>
+                            <td>YES</td>
+                            <td><strong>{{B1}}</strong></td>
+                          </tr>
+                          <tr>
+                            <td>NO</td>
+                            <td><strong>{{B2}}</strong></td>
+                          </tr>
+                        </table>
+                      </div>
+                  </div>
+                  <div id="secondary">
+                      <div id="pie-chart-2" class="ct-chart ct-square"></div>
+                  </div>
+              </div>
+          </div>
+      </div>
 
       <br><hr><br>
 
-      <h3>FOR STATE REP. DISTRICT M&amp;M</h3>
-      <table class="table table-sm" style="width:75%;">
-        <thead class="thead-inverse">
-          <tr>
-            <th>Candidate Name</th>
-            <th>Party Affiliation</th>
-            <th>Vote Count</th>
-          </tr>
-        <tr>
-          <td>P. Nut Butter</td>
-          <td>REPUBLICAN</td>
-          <td><strong>{{C1}}</strong></td>
-        </tr>
-        <tr>
-          <td>Cream C. Kol</td>
-          <td>INDEPENDENT</td>
-          <td><strong>{{C2}}</strong></td>
-        </tr>
-        <tr>
-          <td>Marsh Mallow</td>
-          <td>DEMOCRAT</td>
-          <td><strong>{{C3}}</strong></td>
-        </tr>
-      </table>
+      <div id="page">
+          <div id="main">
+              <div class="wrap">
+                  <div id="primary">
+                      <div id="content" role="main">
+                        <h3>FOR STATE REP. DISTRICT M&amp;M</h3>
+                        <table class="table table-sm" style="width:75%;">
+                          <thead class="thead-inverse">
+                            <tr>
+                              <th>Candidate Name</th>
+                              <th>Party Affiliation</th>
+                              <th>Vote Count</th>
+                            </tr>
+                          <tr>
+                            <td>P. Nut Butter</td>
+                            <td>REPUBLICAN</td>
+                            <td><strong>{{C1}}</strong></td>
+                          </tr>
+                          <tr>
+                            <td>Cream C. Kol</td>
+                            <td>INDEPENDENT</td>
+                            <td><strong>{{C2}}</strong></td>
+                          </tr>
+                          <tr>
+                            <td>Marsh Mallow</td>
+                            <td>DEMOCRAT</td>
+                            <td><strong>{{C3}}</strong></td>
+                          </tr>
+                        </table>
+                      </div>
+                  </div>
+                  <div id="secondary">
+                      <div id="pie-chart-3" class="ct-chart ct-square"></div>
+                  </div>
+              </div>
+          </div>
+      </div>
 
       <br><hr><br>
 
-      <h3>CONSTITUTIONAL INITIATIVE NO. 116</h3>
-      <h4>MAKE VANILLA (OVER CHOCOLATE) THE OFFICIAL BEST FLAVOR</h4>
-      <h4>This is a fiercely debated topic and CI - 116 would official enumerate in written legislative text in perpetuity which flavor has favor - namely vanilla is better, unequivocally, than chocolate.</h4>
-      <table class="table table-sm" style="width:40%;">
-        <thead class="thead-inverse">
-          <tr>
-            <th>Decision</th>
-            <th>Vote Count</th>
-          </tr>
-        <tr>
-          <td>YES</td>
-          <td><strong>{{D1}}</strong></td>
-        </tr>
-        <tr>
-          <td>NO</td>
-          <td><strong>{{D2}}</strong></td>
-        </tr>
-      </table>
+      <div id="page">
+          <div id="main">
+              <div class="wrap">
+                  <div id="primary">
+                      <div id="content" role="main">
+                        <h3>CONSTITUTIONAL INITIATIVE NO. 116</h3>
+                        <h4>MAKE VANILLA (OVER CHOCOLATE) THE OFFICIAL BEST FLAVOR</h4>
+                        <h4>This is a fiercely debated topic and CI - 116 would official enumerate in written legislative text in perpetuity which flavor has favor - namely vanilla is better, unequivocally, than chocolate.</h4>
+                        <table class="table table-sm" style="width:40%;">
+                          <thead class="thead-inverse">
+                            <tr>
+                              <th>Decision</th>
+                              <th>Vote Count</th>
+                            </tr>
+                          <tr>
+                            <td>YES</td>
+                            <td><strong>{{D1}}</strong></td>
+                          </tr>
+                          <tr>
+                            <td>NO</td>
+                            <td><strong>{{D2}}</strong></td>
+                          </tr>
+                        </table>
+                      </div>
+                  </div>
+                  <div id="secondary">
+                      <div id="pie-chart-4" class="ct-chart ct-square"></div>
+                  </div>
+              </div>
+          </div>
+      </div>
 
       <br><hr><br>
 

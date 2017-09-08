@@ -12,7 +12,7 @@ var path = require('path'),
 
   var web3 = new Web3(new Web3.providers.HttpProvider("http://192.168.1.73:8545"));
   var abiDefinition = JSON.parse('[{"constant":false,"inputs":[{"name":"ballotID","type":"uint8"},{"name":"ballotVote","type":"uint32[]"},{"name":"numElements","type":"uint8"}],"name":"castVote","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint8"}],"name":"ballotItems","outputs":[{"name":"itemID","type":"uint8"},{"name":"voteType","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"id","type":"uint8"},{"name":"vType","type":"uint8"},{"name":"vEntries","type":"uint8[]"},{"name":"vResults","type":"uint32[]"}],"name":"addBallotItem","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"itemIds","type":"uint8[]"}],"name":"getCompleteBallotResults","outputs":[{"name":"","type":"uint32[]"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"ballotID","type":"uint8"}],"name":"getResultsFor","outputs":[{"name":"","type":"uint32[]"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"ballotVote","type":"uint8[]"}],"name":"submitBallot","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"}]');
-  const contractInstance = web3.eth.contract(abiDefinition).at("0x81344e380b1e4e7475fbd7da67e59e1ae926b6cb");
+  const contractInstance = web3.eth.contract(abiDefinition).at("0x668b885587cba1a76946275ac6336fbfb9024390");
 
 /**
  * Create a Vote
@@ -121,7 +121,6 @@ exports.list = function(req, res) {
       });
     } else {
       res.jsonp(votes);
-        //return contractInstance.getCompleteBallotResults.call([1,2,3]).toLocaleString();
     }
   });
 };

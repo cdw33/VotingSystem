@@ -63,7 +63,8 @@
         },
         data: {
           pageTitle: 'Vote {{ voteResolve.name }}'
-        }
+        },
+        css: ['public/lib/chartist/dist/chartist.min.css']
       });
   }
 

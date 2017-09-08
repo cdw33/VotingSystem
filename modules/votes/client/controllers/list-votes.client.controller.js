@@ -87,7 +87,7 @@
                 i++;
                 $scope.C3 = data[i];
                 i++;
-                break; 
+                break;
               case "4":
                 $scope.D1 = data[i];
                 i++;
@@ -100,12 +100,63 @@
             }
           }
 
+          buildPieChart();
+
           $scope.date = Date();
       }
 
       function errorCallback(res) {
         vm.error = res.data.message;
       }
+    }
+
+    function buildPieChart(){
+      var data1 = {
+        labels: ['Reese & Cherry', 'Choco & Carmela', 'Magic & Phish'],
+        series: [$scope.A1, $scope.A2, $scope.A3]
+      };
+
+      var data2 = {
+        labels: ['Yes', 'No'],
+        series: [$scope.B1, $scope.B2]
+      };
+
+      var data3 = {
+        labels: ['P. Nut Butter', 'Cream C. Kol', 'Marsh Mallow'],
+        series: [$scope.C1, $scope.C2, $scope.C2]
+      };
+
+      var data4 = {
+        labels: ['Yes', 'No'],
+        series: [$scope.D1, $scope.D2]
+      };
+
+      var options = {
+        labelInterpolationFnc: function(value) {
+          return value[0];
+        }
+      };
+
+      var responsiveOptions = [
+        ['screen and (min-width: 640px)', {
+          chartPadding: 30,
+          labelOffset: 100,
+          labelDirection: 'explode',
+          labelInterpolationFnc: function(value) {
+            return value;
+          }
+        }],
+        ['screen and (min-width: 1024px)', {
+          labelOffset: 0,
+          chartPadding: 40
+        }]
+      ];
+
+      new Chartist.Pie('#pie-chart-1', data1, options, responsiveOptions);
+
+      new Chartist.Pie('#pie-chart-2', data2, options, responsiveOptions);
+      new Chartist.Pie('#pie-chart-3', data3, options, responsiveOptions);
+      new Chartist.Pie('#pie-chart-4', data4, options, responsiveOptions);
     }
 
     //Submit dummy request form as soon as it is valid

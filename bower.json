@@ -12,7 +12,8 @@
     "angular-ui-utils": "bower",
     "angular-ui-router": "~0.2",
     "angular-file-upload": "1.1.5",
-    "angular-drag-and-drop-lists":"2.1.0"
+    "angular-drag-and-drop-lists": "2.1.0",
+    "chartist": "^0.11.0"
   },
   "resolutions": {
     "angular": "~1.3"
