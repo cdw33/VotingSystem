@@ -59,7 +59,7 @@ $ npm install ethereumjs-testrpc web3@0.20.1
 
 Once all the prerequisites are installed, the project can be downloaded using git
 ```bash
-$ git clone https://github.com/cdw33/...
+$ git clone https://github.com/cdw33/VotingSystem
 ```
 
 ## Setting up the development environment
