@@ -12,7 +12,7 @@ var path = require('path'),
 
   var web3 = new Web3(new Web3.providers.HttpProvider("http://192.168.1.73:8545"));
   var abiDefinition = JSON.parse('[{"constant":false,"inputs":[{"name":"ballotID","type":"uint8"},{"name":"ballotVote","type":"uint32[]"},{"name":"numElements","type":"uint8"}],"name":"castVote","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint8"}],"name":"ballotItems","outputs":[{"name":"itemID","type":"uint8"},{"name":"voteType","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"id","type":"uint8"},{"name":"vType","type":"uint8"},{"name":"vEntries","type":"uint8[]"},{"name":"vResults","type":"uint32[]"}],"name":"addBallotItem","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"itemIds","type":"uint8[]"}],"name":"getCompleteBallotResults","outputs":[{"name":"","type":"uint32[]"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"ballotID","type":"uint8"}],"name":"getResultsFor","outputs":[{"name":"","type":"uint32[]"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"ballotVote","type":"uint8[]"}],"name":"submitBallot","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"}]');
-  const contractInstance = web3.eth.contract(abiDefinition).at("0x854a5b7c2bc1bb2d58909810962f98b9f1c96557");
+  const contractInstance = web3.eth.contract(abiDefinition).at("0xb7889fcac2ff31ab7f269ff7674c5adf7a8ec2cd");
 
 /**
  * Create a Vote
@@ -27,7 +27,10 @@ exports.create = function(req, res) {
   var data;
   switch(cmd) {
     case 1: //get ballot data from form
-        data = [1, 3, req.body.A1, req.body.A2, req.body.A3, 2, 2, req.body.B1 == 1 ? 1:0, req.body.B2 == 2 ? 1:0, 3, 3, req.body.C1 == true ? 1:0, req.body.C2 == true ? 1:0, req.body.C3 == true ? 1:0, 4, 2, req.body.D1 == 1 ? 1:0, req.body.D2 == 2 ? 1:0];
+        data = [1, 3, req.body.A1, req.body.A2, req.body.A3,
+                2, 2, req.body.B1 == 1 ? 1:0, req.body.B2 == 2 ? 1:0,
+                3, 3, req.body.C1 == true ? 1:0, req.body.C2 == true ? 1:0, req.body.C3 == true ? 1:0,
+                4, 2, req.body.D1 == 1 ? 1:0, req.body.D2 == 2 ? 1:0];
         break;
     case 2: //get voting request data
         data = req.body.data;
@@ -49,7 +52,6 @@ exports.create = function(req, res) {
           res.jsonp(vote);
           break;
       case 2: //request voting data from blockchain
-      console.log(contractInstance.getCompleteBallotResults.call([1,2,3,4]).toLocaleString())
           res.jsonp(JSON.stringify(contractInstance.getCompleteBallotResults.call([1,2,3,4]).toLocaleString()));
           break;
       default:
