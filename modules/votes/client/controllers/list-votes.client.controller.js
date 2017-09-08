@@ -35,22 +35,17 @@
        }
 
       function successCallback(res) {
-          //incoming res var is a stringified json, we need to clean it up
-          var result = "";
-          var arr = JSON.stringify(res).replace(/:/g, ',').split(",");
 
-          var i=3;
-          while(i<arr.length){
-            result = result + arr[i] + ',';
-            i+=5;
+
+          //incoming res var is a stringified json, we need to clean it up
+          var a = res.toJSON();
+          var b = "";
+
+          for(var x=1; x<Object.keys(a).length-1; x++){
+            b+=a[x];
           }
 
-          //remove trailing comma and apostrophes
-          result = result.split('"').join('');
-          result = result.substring(0, result.length - 1);
-
-          //Turn result data back into array for parsing
-          var data = result.split(',');
+          var data = b.split(',');
 
           //First 2 elements are garbage data from somewhere,
           //hopefully this gets removed when I figure out where..
@@ -92,8 +87,6 @@
                 $scope.D1 = data[i];
                 i++;
                 $scope.D2 = data[i];
-                i++;
-                $scope.D3 = data[i];
                 i++;
                 break;
               default:

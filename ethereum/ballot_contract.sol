@@ -148,8 +148,8 @@ contract Ballot {
   //                   ie.(1,3,1,3,2) or 2 of the same results (1,3,1,3,2,1,3,1,3,2)
   function getCompleteBallotResults(uint8[] itemIds) returns (uint32[]) {
 
-      uint32[] outResult;
-      uint32[] memory tmpResult;
+      uint32[] outResult = [];
+      uint32[] memory tmpResult = [];
 
       for(uint8 i = 0; i < itemIds.length; i++) {
           outResult.push(itemIds[i]);
