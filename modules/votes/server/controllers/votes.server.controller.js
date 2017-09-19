@@ -6,13 +6,14 @@
 var path = require('path'),
   mongoose = require('mongoose'),
   Vote = mongoose.model('Vote'),
+  User = mongoose.model('User'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   _ = require('lodash'),
   Web3 = require('web3');
 
   var web3 = new Web3(new Web3.providers.HttpProvider("http://192.168.1.73:8545"));
   var abiDefinition = JSON.parse('[{"constant":false,"inputs":[{"name":"ballotID","type":"uint8"},{"name":"ballotVote","type":"uint32[]"},{"name":"numElements","type":"uint8"}],"name":"castVote","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint8"}],"name":"ballotItems","outputs":[{"name":"itemID","type":"uint8"},{"name":"voteType","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"id","type":"uint8"},{"name":"vType","type":"uint8"},{"name":"vEntries","type":"uint8[]"},{"name":"vResults","type":"uint32[]"}],"name":"addBallotItem","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"itemIds","type":"uint8[]"}],"name":"getCompleteBallotResults","outputs":[{"name":"","type":"uint32[]"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"ballotID","type":"uint8"}],"name":"getResultsFor","outputs":[{"name":"","type":"uint32[]"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"ballotVote","type":"uint8[]"}],"name":"submitBallot","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"}]');
-  const contractInstance = web3.eth.contract(abiDefinition).at("0x8a655e7401dcd385cee9dab23d64a14004ef35a1");
+  const contractInstance = web3.eth.contract(abiDefinition).at("0x7e0e5183b6de4635a3d02055df777f21d01a909b");
 
 /**
  * Create a Vote
@@ -44,21 +45,20 @@ exports.create = function(req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-
-     //Process and return data based on given command
-    switch(cmd) {
-      case 1: //submit ballot data to blockchain
-          contractInstance.submitBallot(data,{from: web3.eth.accounts[0], gas: 4700000})
-          res.jsonp(vote);
-          break;
-      case 2: //request voting data from blockchain
-          res.jsonp(JSON.stringify(contractInstance.getCompleteBallotResults.call([1,2,3,4]).toLocaleString()));
-          break;
-      default:
-        return res.status(400).send({
-          message: errorHandler.getErrorMessage("Unknown Command")
-        });
-     }
+       //Process and return data based on given command
+      switch(cmd) {
+        case 1: //submit ballot data to blockchain
+            contractInstance.submitBallot(data,{from: web3.eth.accounts[0], gas: 4700000})
+            res.jsonp(vote);
+            break;
+        case 2: //request voting data from blockchain
+            res.jsonp(JSON.stringify(contractInstance.getCompleteBallotResults.call([1,2,3,4]).toLocaleString()));
+            break;
+        default:
+          return res.status(400).send({
+            message: errorHandler.getErrorMessage("Unknown Command")
+          });
+       }
     }
   });
 };
