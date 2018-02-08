@@ -53,8 +53,9 @@ $ npm install -g grunt-cli
 For testing purposes, you will need the following, both can be installed via npm:
 * __testrpc__
 * __web3__
+* __solc__
 ```bash
-$ npm install ethereumjs-testrpc web3@0.20.1
+$ npm install ethereumjs-testrpc web3@0.20.1 solc
 ```
 
 Once all the prerequisites are installed, the project can be downloaded using git
